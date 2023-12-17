@@ -104,7 +104,7 @@ public class GarageController {
         } else if (indataAnställd.equals("3")) {
             garage.skrivUtIncheckadeFordon();
         } else if (indataAnställd.equals("4")) {
-            garage.kontrollerBegränsningParkeradeDagar();
+            garage.kontrolleraBegränsningParkeradeDagar();
         } else if (indataAnställd.equals("5")) {
             garageView.skrivUtMeddelandeTillKund("Adjöken!");
             databas.sparaFordon(garage.getParkeradeFordon());

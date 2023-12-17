@@ -129,7 +129,7 @@ public class Garage {
         return maxTidParkering;
     }
 
-    public void kontrollerBegränsningParkeradeDagar() {
+    public void kontrolleraBegränsningParkeradeDagar() {
         Scanner scan = new Scanner(System.in);
         System.out.println("Vilken fordon vill du kontrollera? (Skriv in registreringsnummer)");
         String svar = scan.nextLine();
