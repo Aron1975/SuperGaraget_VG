@@ -17,8 +17,18 @@ public class Garage {
 
     public FordonInterface checkaInFordon(String typ, String regNr, LocalDate parkeringsDatum) {
 
-        Scanner scan = new Scanner(System.in);
+        FordonInterface f = skapaFordon(typ, regNr, parkeringsDatum);
 
+        if (f != null) {
+
+            if(sistaKollInnanCheckIn(f)) {
+                läggFordonTillListan(f);
+            }
+        }
+        return f;
+    }
+
+    public FordonInterface skapaFordon(String typ, String regNr, LocalDate parkeringsDatum) {
         FordonInterface f = null;
         regNr = regNr.toUpperCase().trim();
         if (typ.equalsIgnoreCase("Bil")) {
@@ -33,20 +43,24 @@ public class Garage {
         if (typ.equalsIgnoreCase("Motorcykel")) {
             f = new Motorcykel(regNr, parkeringsDatum);
         }
-
-        if (f != null) {
-            System.out.println("Pris: " + f.getPris() + " kr per dag.\n Skriv nej för avbryt");
-            String inputUser = scan.nextLine().trim().toLowerCase();
-
-            if (inputUser.equals("nej")) {
-                System.out.println("Adjö");
-            } else {
-                System.out.println("Välkommen in och parkera!");
-            }
-            parkeradeFordon.add(f);
-            antalParkeradeFordon++;
-        }
         return f;
+    }
+    public void läggFordonTillListan(FordonInterface f){
+        parkeradeFordon.add(f);
+        antalParkeradeFordon++;
+    }
+    public boolean sistaKollInnanCheckIn(FordonInterface f) {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Pris: " + f.getPris() + " kr per dag.\n Skriv nej för avbryt");
+        String inputUser = scan.nextLine().trim().toLowerCase();
+
+        if (inputUser.equals("nej")) {
+            System.out.println("Adjö");
+            return false;
+        } else {
+            System.out.println("Välkommen in och parkera!");
+        }
+        return true;
     }
 
     public void checkaUtFordon(String regNr) {
@@ -87,7 +101,7 @@ public class Garage {
         System.out.println("Fakturan skickas till fordonsägarens hemadress, välkommen åter.");
     }
 
-    public void skrivUtIncheckadeBilar() {
+    public void skrivUtIncheckadeFordon() {
         for (FordonInterface f : parkeradeFordon) {
             System.out.println(f.toString());
         }
@@ -97,10 +111,10 @@ public class Garage {
         return antalParkeradeFordon < antalParkeringsplatser;
     }
 
-    public void antalPlatserLediga() {
+    public int antalPlatserLediga() {
         int ledigaPlatser = antalParkeringsplatser - antalParkeradeFordon;
-        System.out.println("Antal lediga platser i Garaget: " + ledigaPlatser);
-        System.out.println(" ");
+
+        return ledigaPlatser;
     }
 
     public List<FordonInterface> getParkeradeFordon() {

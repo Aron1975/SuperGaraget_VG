@@ -1,11 +1,7 @@
 package SuperGaraget_VG;
 
-import java.time.LocalDate;
-import java.util.List;
-import java.util.Scanner;
-
 public class GarageMain {
-    public GarageMain(DatabasInterface dbi, Garage g, View v) {
+    public GarageMain(DatabasInterface dbi, Garage g, GarageView v) {
         new GarageController(dbi, g, v);
         //v.setVisible(true);
     }
@@ -14,7 +10,7 @@ public class GarageMain {
     public static void main(String[] args) {
         DatabasInterface dbi = new Databas();
         Garage g = new Garage();
-        View v = new View();
+        GarageView v = new GarageView();
 
         GarageMain garageMain = new GarageMain(dbi, g, v);
     }
