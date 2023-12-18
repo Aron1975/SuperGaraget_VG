@@ -75,8 +75,13 @@ public class GarageController {
         } else if (inEllerUtFråga.equals("2")) {
             garageView.skrivUtMeddelandeTillKund("Vad har du för registreringsnummer?");
             String regNr = scan.nextLine();
-            garage.checkaUtFordon(regNr);
-            garage.skickaFaktura();
+            double totalPris = garage.checkaUtFordon(regNr);
+            if (totalPris != -1) {
+                garageView.skrivUtMeddelandeTillKund("Ditt totalpris blir: " + totalPris + "kronor. \n" +
+                        "Fakturan skickas till fordonsägarens hemadress, välkommen åter.");
+            }else{
+                garageView.skrivUtMeddelandeTillKund("Fordonet är inte parkerad här");
+            }
         } else if (inEllerUtFråga.equals("3")) {
             garageView.skrivUtMeddelandeTillKund("Adjöken!");
             databas.sparaFordon(garage.getParkeradeFordon());
@@ -104,7 +109,16 @@ public class GarageController {
         } else if (indataAnställd.equals("3")) {
             garage.skrivUtIncheckadeFordon();
         } else if (indataAnställd.equals("4")) {
-            garage.kontrolleraBegränsningParkeradeDagar();
+            garageView.skrivUtMeddelandeTillKund("Vilken fordon vill du kontrollera? (Skriv in registreringsnummer)");
+            String regNr = scan.nextLine().trim().toUpperCase();
+            int dagar[] = garage.kontrolleraBegränsningParkeradeDagar(regNr);
+            if(dagar[0]!=-1) {
+                garageView.skrivUtMeddelandeTillAnställd("Kunden har parkerat: " + dagar[0] + " dagar.\n" +
+                        "Kunden får stå parkerad totalt: " + dagar[1] + " dagar till.");
+            }else{
+                garageView.skrivUtMeddelandeTillAnställd("Fordonet står inte parkerad här!");
+            }
+
         } else if (indataAnställd.equals("5")) {
             garageView.skrivUtMeddelandeTillKund("Adjöken!");
             databas.sparaFordon(garage.getParkeradeFordon());

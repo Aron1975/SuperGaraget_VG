@@ -63,14 +63,14 @@ public class Garage {
         return true;
     }
 
-    public void checkaUtFordon(String regNr) {
+    public double checkaUtFordon(String regNr) {
+        double totPris = -1;
         int bilPaPlats = hittaFordon(regNr);
-        if (bilPaPlats == -1) {
-            System.out.println("Bilen är inte parkerad här");
-        } else {
-            totalPris = beräknaPris(parkeradeFordon.get(bilPaPlats), kontrolleraParkeringstid(parkeradeFordon.get(bilPaPlats)));
+        if (bilPaPlats != -1) {
+            totPris = beräknaPris(parkeradeFordon.get(bilPaPlats), kontrolleraParkeringstid(parkeradeFordon.get(bilPaPlats)));
             parkeradeFordon.remove(bilPaPlats);
         }
+        return totPris;
     }
 
     public int hittaFordon(String regNr) {
@@ -96,9 +96,8 @@ public class Garage {
         return (f.getPris() * antalDagar);
     }
 
-    public void skickaFaktura() {
-        System.out.println("Ditt totalpris blir: " + totalPris + "kronor.");
-        System.out.println("Fakturan skickas till fordonsägarens hemadress, välkommen åter.");
+    public double skickaFaktura() {
+        return totalPris;
     }
 
     public void skrivUtIncheckadeFordon() {
@@ -129,15 +128,14 @@ public class Garage {
         return maxTidParkering;
     }
 
-    public void kontrolleraBegränsningParkeradeDagar() {
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Vilken fordon vill du kontrollera? (Skriv in registreringsnummer)");
-        String svar = scan.nextLine();
-        int i = hittaFordon(svar);
+    public int[] kontrolleraBegränsningParkeradeDagar(String regNr) {
+
+        int[] dagar = new int[]{-1,0};
+        int i = hittaFordon(regNr);
         if (i != -1) {
-            int f = kontrolleraParkeringstid(getParkeradeFordon().get(i));
-            System.out.println("Kunden har parkerat: " + f + " dagar.");
-            System.out.println("Kunden får stå parkerad totalt: " + (getMaxTidParkering() - f) + " dagar till.");
+            dagar[0] = kontrolleraParkeringstid(getParkeradeFordon().get(i));
+            dagar[1] = getMaxTidParkering() - dagar[0];
         }
+        return dagar;
     }
 }

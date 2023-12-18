@@ -29,7 +29,10 @@ public class GarageView extends JFrame {
 
     public void skrivUtMeddelandeTillKund(String meddelande) {
         System.out.println(meddelande);
+    }
 
+    public void skrivUtMeddelandeTillAnställd(String meddelande) {
+        System.out.println(meddelande);
     }
 
     public void skrivUtFelmeddelande(String meddelande) {

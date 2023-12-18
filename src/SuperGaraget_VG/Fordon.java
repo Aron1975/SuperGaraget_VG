@@ -56,5 +56,5 @@ public abstract class Fordon implements FordonInterface{
         this.incheckningstid = incheckningstid;
     }
 
-    public abstract double getPris();
+    //public abstract double getPris();
 }
