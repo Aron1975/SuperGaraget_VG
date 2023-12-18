@@ -11,4 +11,7 @@ public interface FordonInterface {
     String getRegNr();
 
     double getPris();
+
+    void extraService();
+
 }

@@ -9,11 +9,12 @@ public abstract class Fordon implements FordonInterface{
     private String ägare = "";
     private LocalDate incheckningstid;
 
-    public Fordon(String regNr, String modell, String färg, LocalDate incheckningstid) {
+    public Fordon(String regNr, String modell, String färg, String ägare, LocalDate incheckningstid) {
 
         this.regNr = regNr;
         this.modell = modell;
         this.färg = färg;
+        this.ägare = ägare;
         this.incheckningstid = incheckningstid;
     }
 
@@ -57,4 +58,8 @@ public abstract class Fordon implements FordonInterface{
     }
 
     //public abstract double getPris();
+
+    public  void extraService(){
+        System.out.println("Extra service tillgänglig: ");
+    }
 }
