@@ -7,7 +7,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class Databas implements DatabasInterface {
-    //private final List<FordonInterface> parkeradeBilar = new ArrayList<>();
     private final String filnamn = "src/fordonsFil.txt";
 
     public int sparaFordon(List<FordonInterface> parkeradeF) {
@@ -23,7 +22,6 @@ public class Databas implements DatabasInterface {
         return 0;
     }
 
-    //public List<FordonInterface> läsInFordon(Garage garage) {
     public int läsInFordon(Garage garage) {
 
         FordonInterface f;
@@ -43,22 +41,6 @@ public class Databas implements DatabasInterface {
                     System.out.println("Fel vid inläsning");
                     return -1;
                 }
-
-
-                /*
-                if (fordonsTyp.equals("Bil")) {
-                    parkeradeBilar.add(new Bil(regNummer, parkeringsDatum));
-                }
-                if (fordonsTyp.equals("Båt")) {
-                    parkeradeBilar.add(new Bat(regNummer, parkeringsDatum));
-                }
-                if (fordonsTyp.equals("Moped")) {
-                    parkeradeBilar.add(new Moped(regNummer, parkeringsDatum));
-                }
-                if (fordonsTyp.equals("Motorcykel")) {
-                    parkeradeBilar.add(new Motorcykel(regNummer, parkeringsDatum));
-                }*/
-
             }
         } catch (IOException e) {
             System.out.println("Fel inträffade vid läsning från fil.");
@@ -69,5 +51,3 @@ public class Databas implements DatabasInterface {
         return 0;
     }
 }
-
-
