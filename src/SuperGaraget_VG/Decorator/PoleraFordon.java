@@ -18,12 +18,11 @@ public class PoleraFordon extends FordonDecorator {
     @Override
     public void extraService() {
         super.extraService();
-        System.out.println("Polering.");
+        System.out.println("Polering: " + prisPolera);
     }
 
     @Override
     public double getTotalPrisExtra(){
-        System.out.println("Pris: " + prisPolera);
         return (super.getTotalPrisExtra() + prisPolera);
 
     }

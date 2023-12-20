@@ -1,7 +1,5 @@
 package SuperGaraget_VG.FordonFactory;
 
-import SuperGaraget_VG.FordonFactory.FordonInterface;
-
 import java.time.LocalDate;
 public abstract class Fordon implements FordonInterface {
 
@@ -62,9 +60,6 @@ public abstract class Fordon implements FordonInterface {
 
     public abstract double getPris();
 
-    /*public  void extraService(){
-        System.out.println("Inget extra: ");
-    }*/
     public  void extraService(){}
     @Override
     public double getPrisExtra() {return 0;}

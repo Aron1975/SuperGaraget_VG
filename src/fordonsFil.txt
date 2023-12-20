@@ -1,5 +1,6 @@
 Motorcykel, QWERTY, 2023-12-15
-Bil, EBO640, 2023-12-18 Extra: Däckbyte
-Båt, QWERT, 2023-12-19
-Bil, QWEX, 2023-12-20 Extra: Tvätt Extra: Däckbyte Extra: Polering
+Bil, EBO640, 2023-12-18
+Bil, QWEX, 2023-12-20
 Moped, 123456, 2023-12-20
+Moped, MAJOM, 2023-12-20
+Båt, Q, 2023-12-01

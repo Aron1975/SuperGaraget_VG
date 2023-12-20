@@ -4,11 +4,8 @@ import SuperGaraget_VG.FordonFactory.FordonInterface;
 
 import java.time.LocalDate;
 
-
-//import
 public abstract class FordonDecorator implements FordonInterface {
     private FordonInterface fordonInterface;
-    //private double totalPrisExtra;
 
     public FordonDecorator(FordonInterface fordonInterface) {
         this.fordonInterface = fordonInterface;
@@ -21,11 +18,12 @@ public abstract class FordonDecorator implements FordonInterface {
 
     @Override
     public String getRegNr() {
-
         return fordonInterface.getRegNr();
     }
+
     @Override
     public void extraService(){
+        fordonInterface.extraService();
         System.out.println("Service beställt: ");
     }
 
@@ -35,7 +33,6 @@ public abstract class FordonDecorator implements FordonInterface {
     }
 
     public double getTotalPrisExtra(){
-        //return totalPrisExtra;
         return fordonInterface.getTotalPrisExtra();
     }
 

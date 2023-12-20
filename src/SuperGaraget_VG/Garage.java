@@ -96,14 +96,14 @@ public class Garage {
 
     public int kontrolleraParkeringstid(FordonInterface f) {
         LocalDate lD = LocalDate.now();
-        System.out.println(f.getIncheckningstid().toString());
+        //System.out.println(f.getIncheckningstid().toString());
         Period periods = Period.between(f.getIncheckningstid(), lD);
         long days = ChronoUnit.DAYS.between(f.getIncheckningstid(), lD);
         return (int)days;
     }
 
     public double beräknaPris(FordonInterface f, int antalDagar) {
-        return (f.getPris() * antalDagar);
+        return ((f.getPris() * antalDagar)+f.getTotalPrisExtra());
     }
 
     public void skrivUtPris(FordonInterface f){
@@ -111,7 +111,7 @@ public class Garage {
         System.out.println("Priset för nuvarande är: ");
         System.out.println("Parkering: " + antalDagar + " dagar: " + f.getPris()*antalDagar);
         f.extraService();
-        System.out.println(" " + f.getPrisExtra());
+        //System.out.println(" " + f.getPrisExtra());
         System.out.println("Total pris extras: " + f.getTotalPrisExtra());
     }
 
@@ -120,10 +120,12 @@ public class Garage {
     }
 
     public void skrivUtIncheckadeFordon() {
+        StringBuilder sb = new StringBuilder();
         for (FordonInterface f : parkeradeFordon) {
-            System.out.println(f.toString());
-            f.extraService();
+            //System.out.println(f.toString());
+            sb.append(f.toString() + "\n");
         }
+        System.out.println(sb);
     }
 
     public boolean kontrolleraPlats() {
@@ -163,18 +165,14 @@ public class Garage {
         parkeradeFordon.set(plats, fordon);
     }
 
-    public FordonInterface läggTillExtraTjänst(FordonInterface f){
-        System.out.println("1 Tvätt\n2 Däckbyte\n3 Polering");
-        Scanner scan = new Scanner(System.in);
-
-        String tjänst = scan.nextLine();
-        if(tjänst.equals("1")){
+    public FordonInterface läggTillExtraTjänst(FordonInterface f, String val){
+        if(val.equals("1")){
             f = new TvättaFordon(f);
         }
-        if(tjänst.equals("2")){
+        if(val.equals("2")){
             f = new BytaDäckFordon(f);
         }
-        if(tjänst.equals("3")){
+        if(val.equals("3")){
             f = new PoleraFordon(f);
         }
         return f;

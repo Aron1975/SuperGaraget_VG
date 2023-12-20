@@ -14,7 +14,6 @@ public class GarageController {
     private final LocalDate parkeringsDatum = LocalDate.now();
     private FordonInterface fordonAttCheckaIn;
 
-   // private List<FordonInterface> parkeradeFordon = new ArrayList<>();
 
     public GarageController(DatabasInterface databas, Garage garage, GarageView garageView) {
         this.databas = databas;
@@ -56,7 +55,7 @@ public class GarageController {
         boolean fortsätt = true;
         while(fortsätt) {
             garageView.skrivUtKundEllerAnställdMeddelande("Vill du checka in eller checka ut ett fordon? \nAnge: \n- 1 för att checka in \n- 2 för att checka ut" +
-                    "\n- 3 för att återgå till huvudmenyn");
+                    "\n- 3 för att återgå");
             String inEllerUtFråga = scan.nextLine().trim().toLowerCase();
             if (inEllerUtFråga.equals("1")) {
                 if (garage.kontrolleraPlats()) {
@@ -69,8 +68,7 @@ public class GarageController {
                     if ((fordonAttCheckaIn = garage.checkaInFordon(fordonsTyp, regNr, parkeringsDatum)) == null) {
                         garageView.skrivUtMeddelandeTillKund("Fordonet får inte parkera här.");
                     } else{
-                        garageView.skrivUtMeddelandeTillKund("\nVill du ha en tilläggstjänst? Annars tryck enter1. Tvätt \\n2. Däckbyte \\n3. Polering\"");
-                        garage.läggTillExtraTjänst(fordonAttCheckaIn);
+                        läggTillExtratjänst(regNr);
                     }
 
                 } else {
@@ -134,13 +132,10 @@ public class GarageController {
                     garageView.skrivUtFelmeddelande("Bilen är inte parkerad här!");
                 } else {
                     //Kalla på tilläggstjänster
-                    FordonInterface f = garage.getParkeradeFordon().get(parkeringsPlats);
-                    f = garage.läggTillExtraTjänst(f);
-                    garage.uppdateraFordonILista(parkeringsPlats, f);
-                    System.out.println(garage.getParkeradeFordon().get(parkeringsPlats).toString());
-                    garage.skrivUtPris(garage.getParkeradeFordon().get(parkeringsPlats));
+                    fordonAttCheckaIn = garage.getParkeradeFordon().get(parkeringsPlats);
+                    läggTillExtratjänst(regNr);
                 }
-            }else{
+            }else if (indataAnställd.equals("6")) {
                 garageView.skrivUtMeddelandeTillKund("Adjöken!");
                 databas.sparaFordon(garage.getParkeradeFordon());
                 fortsätt = false;
@@ -159,8 +154,24 @@ public class GarageController {
             garageView.skrivUtSkrivLäsFilFelmeddelande("Kunde inte läsa in fordon från databas.");
 
         }
+
         //List<FordonInterface> test123 = databas.läsInFordon();
         //garage.setParkeradeFordon(test123);
     }
 
+    public void läggTillExtratjänst(String regNr){
+        boolean fortsätt = true;
+        garageView.skrivUtMeddelandeTillKund("Vill du ha en tilläggstjänst? Annars tryck enter \n1. Tvätt \n2. Däckbyte \n3. Polering");
+        while(fortsätt) {
+            String dataIn = scan.nextLine();
+            if (dataIn.equals("1") || dataIn.equals("2") || dataIn.equals("3")) {
+                fordonAttCheckaIn = garage.läggTillExtraTjänst(fordonAttCheckaIn, dataIn);
+                garage.uppdateraFordonILista(garage.hittaFordon(regNr), fordonAttCheckaIn);
+                garageView.skrivUtMeddelandeTillAnställd("Tjänst tillagd: " + fordonAttCheckaIn.getPrisExtra() + "kr");
+                garageView.skrivUtMeddelandeTillKund("\nNågot mer? Annars tryck enter \n1. Tvätt \n2. Däckbyte \n3. Polering");
+            }else{
+                fortsätt = false;
+            }
+        }
+    }
 }

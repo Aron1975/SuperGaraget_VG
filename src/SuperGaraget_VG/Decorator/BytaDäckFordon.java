@@ -18,14 +18,14 @@ public class BytaDäckFordon extends FordonDecorator {
     @Override
     public void extraService() {
         super.extraService();
-        System.out.println("Däckbyte.");
+        System.out.println("Däckbyte: " + prisBytaDäck);
     }
 
     @Override
     public double getTotalPrisExtra(){
-        System.out.println("Pris: " + prisBytaDäck);
         return (super.getTotalPrisExtra() + prisBytaDäck);
     }
+
     @Override
     public String toString() {
         return super.toString() + " Extra: Däckbyte";

@@ -11,12 +11,6 @@ public class TvättaFordon extends FordonDecorator {
         super(fordonInterface);
     }
 
-    /*
-    @Override
-    public double getPris() {
-        return pris;
-    }*/
-
     public double getPrisExtra() {
         return prisTvätt;
     }
@@ -24,13 +18,11 @@ public class TvättaFordon extends FordonDecorator {
     @Override
     public void extraService() {
         super.extraService();
-        //System.out.println("Tvätt: " + prisTvätt);
-        System.out.println("Tvätt: ");
+        System.out.println("Tvätt: " + prisTvätt);
     }
 
     @Override
     public double getTotalPrisExtra(){
-        System.out.println("Pris: " + prisTvätt);
         return (super.getTotalPrisExtra() + prisTvätt);
     }
 
