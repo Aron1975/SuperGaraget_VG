@@ -1,2 +1,5 @@
-Båt, BALALAJKA, 2023-12-16
-Motorcykel, KAKA, 2023-12-17
+Motorcykel, QWERTY, 2023-12-15
+Bil, EBO640, 2023-12-18 Extra: Däckbyte
+Båt, QWERT, 2023-12-19
+Bil, QWEX, 2023-12-20 Extra: Tvätt Extra: Däckbyte Extra: Polering
+Moped, 123456, 2023-12-20

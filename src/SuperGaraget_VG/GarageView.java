@@ -22,9 +22,9 @@ public class GarageView extends JFrame {
     }
 
     public void uppdateraInläsningsfältAnställd() {
-        System.out.println("Vad vill du göra? Ange: \n- 1 för att söka i databas eller\n- 2 för Checka in eller checka ut en kund" +
+        System.out.println("Vad vill du göra? Ange: \n- 1 för att söka i databas och se kostnader\n- 2 för Checka in eller checka ut en kund" +
                 "\n- 3 för att skriva ut alla fordon" + " \n- 4 för att kontrollera parkeringstid."
-                + " \n- 5 för att stänga ner programmet.");
+                + " \n- 5 för att lägga till tjänst." + " \n- Enter för att återgå.");
     }
 
     public void skrivUtMeddelandeTillKund(String meddelande) {

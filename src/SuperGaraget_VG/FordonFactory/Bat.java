@@ -1,4 +1,6 @@
-package SuperGaraget_VG;
+package SuperGaraget_VG.FordonFactory;
+
+import SuperGaraget_VG.FordonFactory.Fordon;
 
 import java.time.LocalDate;
 
@@ -9,8 +11,8 @@ public class Bat extends Fordon {
 
     //private final LocalDate incheckningstid;
 
-    public Bat(String regNr, String modell, String färg, LocalDate incheckningstid) {
-        super(regNr, modell, färg, incheckningstid);
+    public Bat(String regNr, String modell, String färg, String ägare, LocalDate incheckningstid) {
+        super(regNr, modell, färg, ägare, incheckningstid);
         //this.incheckningstid = incheckningstid;
     }
 

@@ -1,21 +1,23 @@
-package SuperGaraget_VG;
+package SuperGaraget_VG.FordonFactory;
+
+import SuperGaraget_VG.FordonFactory.Fordon;
 
 import java.time.LocalDate;
 
-public class Moped extends Fordon {
+public class Motorcykel extends Fordon {
 
-   // private final String regNr;
-    private final double pris = 20;
+    //private final String regNr;
+    private final double pris = 50;
 
     //private final LocalDate incheckningstid;
 
-    public Moped(String regNr, LocalDate incheckningstid) {
+    public Motorcykel(String regNr, LocalDate incheckningstid) {
         super(regNr, incheckningstid);
     }
 
     @Override
     public String toString() {
-        return ("Moped, " + this.getRegNr() + ", " + this.getIncheckningstid());
+        return ("Motorcykel, " + this.getRegNr() + ", " + getIncheckningstid());
     }
 /*
     @Override

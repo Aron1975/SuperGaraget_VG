@@ -1,5 +1,7 @@
 package SuperGaraget_VG;
 
+import SuperGaraget_VG.FordonFactory.FordonInterface;
+
 import java.util.List;
 
 public interface DatabasInterface {

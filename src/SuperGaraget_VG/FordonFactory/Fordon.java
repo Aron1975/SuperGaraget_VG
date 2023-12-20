@@ -1,13 +1,16 @@
-package SuperGaraget_VG;
+package SuperGaraget_VG.FordonFactory;
+
+import SuperGaraget_VG.FordonFactory.FordonInterface;
 
 import java.time.LocalDate;
-public abstract class Fordon implements FordonInterface{
+public abstract class Fordon implements FordonInterface {
 
     private String regNr;
     private String modell = "";
     private String färg = "";
     private String ägare = "";
     private LocalDate incheckningstid;
+
 
     public Fordon(String regNr, String modell, String färg, String ägare, LocalDate incheckningstid) {
 
@@ -57,9 +60,15 @@ public abstract class Fordon implements FordonInterface{
         this.incheckningstid = incheckningstid;
     }
 
-    //public abstract double getPris();
+    public abstract double getPris();
 
-    public  void extraService(){
-        System.out.println("Extra service tillgänglig: ");
-    }
+    /*public  void extraService(){
+        System.out.println("Inget extra: ");
+    }*/
+    public  void extraService(){}
+    @Override
+    public double getPrisExtra() {return 0;}
+
+    @Override
+    public double getTotalPrisExtra(){return 0;}
 }

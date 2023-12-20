@@ -1,5 +1,10 @@
 package SuperGaraget_VG;
 
+import SuperGaraget_VG.Decorator.BytaDäckFordon;
+import SuperGaraget_VG.Decorator.PoleraFordon;
+import SuperGaraget_VG.Decorator.TvättaFordon;
+import SuperGaraget_VG.FordonFactory.*;
+
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.temporal.ChronoUnit;
@@ -43,6 +48,11 @@ public class Garage {
         if (typ.equalsIgnoreCase("Motorcykel")) {
             f = new Motorcykel(regNr, parkeringsDatum);
         }
+        /*
+        System.out.println("Kallar på Extra tjänst!!!");
+        f = läggTillExtraTjänst(f);
+        System.out.println("Efter kall på Extra tjänst!!!");
+        f.extraService();*/
         return f;
     }
     public void läggFordonTillListan(FordonInterface f){
@@ -96,6 +106,15 @@ public class Garage {
         return (f.getPris() * antalDagar);
     }
 
+    public void skrivUtPris(FordonInterface f){
+        int antalDagar = kontrolleraParkeringstid(f);
+        System.out.println("Priset för nuvarande är: ");
+        System.out.println("Parkering: " + antalDagar + " dagar: " + f.getPris()*antalDagar);
+        f.extraService();
+        System.out.println(" " + f.getPrisExtra());
+        System.out.println("Total pris extras: " + f.getTotalPrisExtra());
+    }
+
     public double skickaFaktura() {
         return totalPris;
     }
@@ -103,6 +122,7 @@ public class Garage {
     public void skrivUtIncheckadeFordon() {
         for (FordonInterface f : parkeradeFordon) {
             System.out.println(f.toString());
+            f.extraService();
         }
     }
 
@@ -137,5 +157,26 @@ public class Garage {
             dagar[1] = getMaxTidParkering() - dagar[0];
         }
         return dagar;
+    }
+
+    public void uppdateraFordonILista(int plats, FordonInterface fordon){
+        parkeradeFordon.set(plats, fordon);
+    }
+
+    public FordonInterface läggTillExtraTjänst(FordonInterface f){
+        System.out.println("1 Tvätt\n2 Däckbyte\n3 Polering");
+        Scanner scan = new Scanner(System.in);
+
+        String tjänst = scan.nextLine();
+        if(tjänst.equals("1")){
+            f = new TvättaFordon(f);
+        }
+        if(tjänst.equals("2")){
+            f = new BytaDäckFordon(f);
+        }
+        if(tjänst.equals("3")){
+            f = new PoleraFordon(f);
+        }
+        return f;
     }
 }

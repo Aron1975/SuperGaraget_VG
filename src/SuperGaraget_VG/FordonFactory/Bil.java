@@ -1,4 +1,6 @@
-package SuperGaraget_VG;
+package SuperGaraget_VG.FordonFactory;
+
+import SuperGaraget_VG.FordonFactory.Fordon;
 
 import java.time.LocalDate;
 
@@ -15,6 +17,7 @@ public class Bil extends Fordon {
 
     @Override
     public String toString() {
+        //extraService();
         return ("Bil, " + this.getRegNr() + ", " + this.getIncheckningstid());
     }
 

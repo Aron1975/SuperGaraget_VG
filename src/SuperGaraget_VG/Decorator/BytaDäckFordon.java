@@ -1,21 +1,33 @@
 package SuperGaraget_VG.Decorator;
 
-import SuperGaraget_VG.FordonInterface;
+import SuperGaraget_VG.FordonFactory.FordonInterface;
 
-public class BytaDäckFordon extends FordonDecorator{
+public class BytaDäckFordon extends FordonDecorator {
 
-    double pris = 200;
+    double prisBytaDäck = 200;
+
     public BytaDäckFordon(FordonInterface fordonInterface) {
         super(fordonInterface);
     }
 
     @Override
-    public double getPris() {
-        return pris;
+    public double getPrisExtra() {
+        return prisBytaDäck;
     }
 
     @Override
-    public  void extraService(){
+    public void extraService() {
+        super.extraService();
         System.out.println("Däckbyte.");
+    }
+
+    @Override
+    public double getTotalPrisExtra(){
+        System.out.println("Pris: " + prisBytaDäck);
+        return (super.getTotalPrisExtra() + prisBytaDäck);
+    }
+    @Override
+    public String toString() {
+        return super.toString() + " Extra: Däckbyte";
     }
 }

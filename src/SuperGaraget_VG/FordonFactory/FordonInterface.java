@@ -1,4 +1,4 @@
-package SuperGaraget_VG;
+package SuperGaraget_VG.FordonFactory;
 
 import java.time.LocalDate;
 
@@ -13,5 +13,9 @@ public interface FordonInterface {
     double getPris();
 
     void extraService();
+
+    double getPrisExtra();
+
+    double getTotalPrisExtra();
 
 }
